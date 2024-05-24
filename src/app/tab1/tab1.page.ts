@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PokeAPIService } from 'src/services/poke-api.service';
 import { ViaCEPService } from 'src/services/via-cep.service';
-
+import { SharedPokemonService } from 'src/services/shared-pokemon.service';
 
 @Component({
   selector: 'app-tab1',
@@ -20,7 +20,8 @@ export class Tab1Page {
 
   constructor(
     private pokeAPIService: PokeAPIService,
-    private viaCEPService: ViaCEPService
+    private viaCEPService: ViaCEPService,
+    private sharedPokemonService: SharedPokemonService
   ) {}
   buscarPokemon() {
     this.viaCEPService.getViaCEPService(this.areaBuscarPokemon).subscribe((value) =>{
@@ -32,12 +33,13 @@ export class Tab1Page {
     const pokemonId = Math.floor(Math.random() * 100) + 1;
     this.pokeAPIService.getPokeAPIService(pokemonId).subscribe(data => {
       this.pokemonData = data;
+      this.sharedPokemonService.setPokemon1(data);
     });
   }
   get pokemonImageUrl() {
     if (this.pokemonData) {
       return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.pokemonData.id}.png`;
     }
-    return ''; // Ou uma URL de imagem de placeholder se não houver dados disponíveis
+    return '';
   }
 }
