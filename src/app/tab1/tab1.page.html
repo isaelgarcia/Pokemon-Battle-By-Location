@@ -48,18 +48,18 @@
 </ion-card>
 
 <ion-card>
-  <ion-card-content *ngIf="pokemonData">
-    <ion-card-title> {{ pokemonData.name.toUpperCase() }} </ion-card-title>
+  <ion-card-content *ngIf="pokemon1Source">
+    <ion-card-title> {{ pokemon1Source.name.toUpperCase() }} </ion-card-title>
     <ion-img [src]="pokemonImageUrl" alt="" />
     <ion-list>
       <ion-item>
-        <ion-label>Habilidades: {{ pokemonData.abilities.length }}</ion-label>
+        <ion-label>Habilidades: {{ pokemon1Source.abilities.length }}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Altura: {{ pokemonData.height }}</ion-label>
+        <ion-label>Altura: {{ pokemon1Source.height }}</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Peso: {{ pokemonData.weight }}</ion-label>
+        <ion-label>Peso: {{ pokemon1Source.weight }}</ion-label>
       </ion-item>
     </ion-list>
   </ion-card-content>

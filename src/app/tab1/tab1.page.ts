@@ -16,7 +16,7 @@ export class Tab1Page {
     logradouro: '',
     uf: ''
   };
-  pokemonData: any = null;
+  pokemon1Source: any = null;
 
   constructor(
     private pokeAPIService: PokeAPIService,
@@ -32,13 +32,14 @@ export class Tab1Page {
     });
     const pokemonId = Math.floor(Math.random() * 100) + 1;
     this.pokeAPIService.getPokeAPIService(pokemonId).subscribe(data => {
-      this.pokemonData = data;
+      this.pokemon1Source = data;
       this.sharedPokemonService.setPokemon1(data);
+      this.sharedPokemonService.addPokemon(data);
     });
   }
   get pokemonImageUrl() {
-    if (this.pokemonData) {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.pokemonData.id}.png`;
+    if (this.pokemon1Source) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.pokemon1Source.id}.png`;
     }
     return '';
   }

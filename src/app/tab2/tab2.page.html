@@ -7,10 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngIf="pokemonData">
+  <ion-card *ngIf="pokemon1Source">
     <ion-card-header>
       <ion-card-title [ngStyle]="{'color': resultadoColor}">
-        {{ pokemonData.name.toUpperCase() }}
+        {{ pokemon1Source.name.toUpperCase() }}
       </ion-card-title>
       <ion-card-title *ngIf="resultado">
         {{ resultado }}
@@ -20,13 +20,13 @@
       <ion-img [src]="pokemonImageUrl" alt="" />
       <ion-list>
         <ion-item>
-          <ion-label>Habilidades: {{ pokemonData.abilities.length }}</ion-label>
+          <ion-label>Habilidades: {{ pokemon1Source.abilities.length }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Altura: {{ pokemonData.height }}</ion-label>
+          <ion-label>Altura: {{ pokemon1Source.height }}</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label>Peso: {{ pokemonData.weight }}</ion-label>
+          <ion-label>Peso: {{ pokemon1Source.weight }}</ion-label>
         </ion-item>
       </ion-list>
     </ion-card-content>
