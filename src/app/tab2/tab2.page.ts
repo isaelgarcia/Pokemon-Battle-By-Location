@@ -9,8 +9,8 @@ import { SharedPokemonService } from 'src/services/shared-pokemon.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  pokemonData: any = null;
-  pokemon1Data: any = null;
+  pokemon1Source: any = null;
+  pokemon2Source: any = null;
   resultado: string = '';
 
   constructor(
@@ -21,7 +21,7 @@ export class Tab2Page {
 
   ngOnInit() {
     this.sharedPokemonService.pokemon1$.subscribe(data => {
-      this.pokemon1Data = data;
+      this.pokemon2Source = data;
       this.fetchRandomPokemon();
     });
   }
@@ -29,30 +29,33 @@ export class Tab2Page {
   fetchRandomPokemon() {
     const pokemonId = Math.floor(Math.random() * 100) + 1;
     this.pokeAPIService.getPokeAPIService(pokemonId).subscribe(data => {
-      this.pokemonData = data;
+      this.pokemon1Source = data;
       this.sharedPokemonService.setPokemon2(data); // Armazena o Pokémon no serviço compartilhado
       this.comparePokemons();
     });
   }
 
   comparePokemons() {
-    if (this.pokemon1Data && this.pokemonData) {
-      const abilities1 = this.pokemon1Data.abilities.length;
-      const abilities2 = this.pokemonData.abilities.length;
+    if (this.pokemon2Source && this.pokemon1Source) {
+      const abilities1 = this.pokemon2Source.abilities.length;
+      const abilities2 = this.pokemon1Source.abilities.length;
 
       if (abilities1 === abilities2) {
         this.resultado = 'Empate';
+        this.sharedPokemonService.incrementDraw(this.pokemon2Source.id);
       } else if (abilities1 > abilities2) {
-        this.resultado = 'Perdeu';
-      } else {
         this.resultado = 'Ganhou';
+        this.sharedPokemonService.incrementVictory(this.pokemon2Source.id);
+      } else {
+        this.resultado = 'Perdeu';
+        this.sharedPokemonService.incrementDefeat(this.pokemon2Source.id);
       }
     }
   }
 
   get pokemonImageUrl() {
-    if (this.pokemonData) {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.pokemonData.id}.png`;
+    if (this.pokemon1Source) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${this.pokemon1Source.id}.png`;
     }
     return ''; 
   }
