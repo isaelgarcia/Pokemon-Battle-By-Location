@@ -6,7 +6,7 @@ Aplicativo mobile desenvolvido com **Ionic Framework (Angular)**, que consome du
 
 > ⚡ Projeto acadêmico com foco em integração de APIs e desenvolvimento mobile híbrido. Desenvolvido como um protótipo com **apoio de IA** e recursos didáticos fornecidos pelo professor.
 
-> ⚠️ Funcionalidades como batalhas manuais e seleção de Pokémon não foram implementadas. Projeto também contou com auxílio de IA em sua elaboração.
+> ⚠️ Funcionalidades como batalhas manuais e seleção de Pokémon não foram implementadas.
 
 ---
 
